@@ -69,7 +69,7 @@
       <bpmn2:outgoing>SequenceFlow_12</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_11" sourceRef="IntermediateCatchEvent_1" targetRef="ServiceTask_4"/>
-    <bpmn2:serviceTask id="ServiceTask_5" camunda:expression="#{emailAdapter.sendConfirmation()}" name="Bestätigungs-&#xD;&#xA;mail schicken">
+    <bpmn2:serviceTask id="ServiceTask_5" camunda:expression="#{emailAdapter.sendConfirmation()}" name="Bestätigungs-&#xD;&#xA;mail verschicken">
       <bpmn2:incoming>SequenceFlow_12</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
     </bpmn2:serviceTask>
