@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>OOP DEMO</title>
+    <link rel="stylesheet" href="webjars/bootstrap/2.3.0/css/bootstrap.css" />
+</h:head>
+<h:body>
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li><a href="newOrder.jsf">Neue Bestellung</a></li>
+                <li class="active"><a href="supplierResponse.jsf">Lieferantenrückmeldung</a></li>
+            </ul>
+            <h3 class="text-muted">Pizza Order Demo</h3>
+        </div>
+
+        <h:form>
+            <fieldset>
+                <legend>Lieferantenrückmeldung</legend>
+                <p>
+                    <label>Correlation ID</label>
+                    <h:inputText value="#{supplierController.correlationId}" />
+
+                    <label>Kommentar</label>
+                    <h:inputText value="#{supplierController.comment}" />
+
+                </p>
+                <h:commandButton action="#{supplierController.submit()}"
+                                 value="Bestätigung abschicken" styleClass="btn btn-primary"/>
+            </fieldset>
+        </h:form>
+    </div>
+</h:body>
+</html>

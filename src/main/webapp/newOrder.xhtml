@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Pizza Order Demo</title>
+    <link rel="stylesheet" href="webjars/bootstrap/2.3.0/css/bootstrap.css"/>
+</h:head>
+<h:body>
+    <div class="container">
+        <div class="header">
+            <ul class="nav nav-pills pull-right">
+                <li class="active"><a href="newOrder.jsf">Neue Bestellung</a></li>
+                <li><a href="supplierResponse.jsf">Lieferantenrückmeldung</a></li>
+            </ul>
+            <h3 class="text-muted">Pizza Order Demo</h3>
+        </div>
+
+        <h:form>
+            <fieldset>
+                <legend>Neue Bestellung</legend>
+                <p>
+                    <label for="email">Email</label>
+                    <h:inputText id="email" value="#{pizzaOrderController.newOrder.email}"/>
+
+                    <label for="plz">PLZ</label>
+                    <h:inputText id="plz" value="#{pizzaOrderController.newOrder.zip}"/>
+
+                    <label for="pizza">Pizza</label>
+                    <h:inputText id="pizza" value="#{pizzaOrderController.newOrder.orderDetails}"/>
+
+                    <label for="amount">Betrag</label>
+                    <h:inputText id="amount" value="#{pizzaOrderController.newOrder.amount}"/>
+                </p>
+                <h:commandButton action="#{pizzaOrderController.submitOrder()}"
+                                 value="Bestellung abschicken" styleClass="btn btn-primary"/>
+            </fieldset>
+        </h:form>
+    </div>
+</h:body>
+</html>

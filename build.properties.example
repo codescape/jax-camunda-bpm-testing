@@ -1,0 +1,2 @@
+# Defines the deployment folder in the fox installation.
+deploy.jboss.dir=D:/java/camunda-bpm-jboss-7.1.0-Final/server/jboss-as-7.2.0.Final/standalone/deployments
