@@ -1,7 +1,9 @@
 package com.opitzconsulting.pizza;
 
 
+import com.opitzconsulting.pizza.arquillian.IgnoreMavenTestSourceFolder;
 import com.opitzconsulting.pizza.process.SupplierAdapter;
+import lombok.extern.java.Log;
 import org.camunda.bpm.engine.ProcessEngine;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.task.Task;
@@ -26,7 +28,8 @@ import static junit.framework.TestCase.assertNotNull;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Arquillian.class)
-public class ArquillianPizzaProcessTest {
+@Log
+public class PizzaProcessIntegrationTest {
 
     private static final String PROCESS_DEFINITION_KEY = "pizza";
 
@@ -47,7 +50,10 @@ public class ArquillianPizzaProcessTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsWebResource("META-INF/persistence.xml", "WEB-INF/classes/META-INF/persistence.xml")
                         // add required classes / packages
-                .addPackages(false, "com.opitzconsulting.pizza", "com.opitzconsulting.pizza.process")
+                .addPackages(false, new IgnoreMavenTestSourceFolder(), "com.opitzconsulting.pizza", "com.opitzconsulting.pizza.process")
+                        // add test itself and test helpers
+                .addClass(PizzaProcessIntegrationTest.class)
+                .addPackage("com.opitzconsulting.pizza.arquillian")
                         // add required wsdl and classes for weather webservice
                 .addAsResource("wsdl/globalweather.wsdl")
                 .addPackage("net.webservicex")

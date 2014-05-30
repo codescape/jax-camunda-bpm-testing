@@ -1,4 +1,4 @@
-package com.opitzconsulting.pizza.unit;
+package processes;
 
 import com.opitzconsulting.pizza.Order;
 import com.opitzconsulting.pizza.process.EmailAdapter;
