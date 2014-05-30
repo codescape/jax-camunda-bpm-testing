@@ -23,10 +23,10 @@ public class SupplierAdapter {
     public static final String SUPPLIER_CORRELATION_ID = "SUPPLIER_CORRELATION_ID";
 
     @Inject
-    private BusinessProcess businessProcess;
+    BusinessProcess businessProcess;
 
     @Inject
-    private RuntimeService runtimeService;
+    RuntimeService runtimeService;
 
     @Inject
     @Named
