@@ -58,17 +58,17 @@
       <bpmn2:outgoing>SequenceFlow_10</bpmn2:outgoing>
     </bpmn2:serviceTask>
     <bpmn2:sequenceFlow id="SequenceFlow_9" sourceRef="ExclusiveGateway_3" targetRef="ServiceTask_3"/>
-    <bpmn2:intermediateCatchEvent id="IntermediateCatchEvent_1" name="Auftragsbestätigung&#xD;&#xA;empfangen">
+    <bpmn2:intermediateCatchEvent id="SupplierResponseEvent" name="Auftragsbestätigung&#xD;&#xA;empfangen">
       <bpmn2:incoming>SequenceFlow_10</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_11</bpmn2:outgoing>
       <bpmn2:messageEventDefinition id="MessageEventDefinition_1" messageRef="Message_1"/>
     </bpmn2:intermediateCatchEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_10" sourceRef="ServiceTask_3" targetRef="IntermediateCatchEvent_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_10" sourceRef="ServiceTask_3" targetRef="SupplierResponseEvent"/>
     <bpmn2:serviceTask id="ServiceTask_4" camunda:expression="#{weatherAdapter.getWeather()}" name="Wetter am Zielort abrufen">
       <bpmn2:incoming>SequenceFlow_11</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_12</bpmn2:outgoing>
     </bpmn2:serviceTask>
-    <bpmn2:sequenceFlow id="SequenceFlow_11" sourceRef="IntermediateCatchEvent_1" targetRef="ServiceTask_4"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_11" sourceRef="SupplierResponseEvent" targetRef="ServiceTask_4"/>
     <bpmn2:serviceTask id="ServiceTask_5" camunda:expression="#{emailAdapter.sendConfirmation()}" name="Bestätigungs-&#xD;&#xA;mail verschicken">
       <bpmn2:incoming>SequenceFlow_12</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_13</bpmn2:outgoing>
@@ -197,7 +197,7 @@
           <dc:Bounds height="0.0" width="0.0" x="591.0" y="329.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="_BPMNShape_IntermediateCatchEvent_2" bpmnElement="IntermediateCatchEvent_1">
+      <bpmndi:BPMNShape id="_BPMNShape_IntermediateCatchEvent_2" bpmnElement="SupplierResponseEvent">
         <dc:Bounds height="36.0" width="36.0" x="776.0" y="312.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_5">
           <dc:Bounds height="38.0" width="121.0" x="734.0" y="354.0"/>

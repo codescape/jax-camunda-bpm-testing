@@ -3,6 +3,7 @@ package com.opitzconsulting.pizza.unit;
 import com.opitzconsulting.pizza.Order;
 import com.opitzconsulting.pizza.process.EmailAdapter;
 import com.opitzconsulting.pizza.process.GeoAdapter;
+import com.opitzconsulting.pizza.process.SupplierAdapter;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.camunda.bpm.engine.test.Deployment;
 import org.camunda.bpm.engine.test.ProcessEngineRule;
@@ -34,6 +35,9 @@ public class PizzaProcessTest {
     public EmailAdapter emailAdapter;
 
     @Mock
+    public SupplierAdapter supplierAdapter;
+
+    @Mock
     public Order order;
 
     @Before
@@ -41,6 +45,7 @@ public class PizzaProcessTest {
         MockitoAnnotations.initMocks(this);
         Mocks.register("geoAdapter", geoAdapter);
         Mocks.register("emailAdapter", emailAdapter);
+        Mocks.register("supplierAdapter", supplierAdapter);
         Mocks.register("order", order);
     }
 
@@ -71,6 +76,18 @@ public class PizzaProcessTest {
 
         verify(emailAdapter).sendRejection();
         assertThat(pi).isEnded();
+    }
+
+    @Test
+    @Deployment(resources = "pizza.bpmn")
+    public void expectLocalDealerToConfirmOrder() throws Exception {
+        when(order.getAmount()).thenReturn(100L);
+
+        ProcessInstance pi = runtimeService().startProcessInstanceByKey("pizza");
+        assertThat(pi).isStarted();
+
+        verify(supplierAdapter).sendOrder();
+        assertThat(pi).isWaitingAt("SupplierResponseEvent");
     }
 
 }
