@@ -1,6 +1,5 @@
 package com.opitzconsulting.pizza.process;
 
-import org.camunda.bpm.engine.RuntimeService;
 import org.camunda.bpm.engine.cdi.BusinessProcess;
 import org.junit.Before;
 import org.junit.Test;

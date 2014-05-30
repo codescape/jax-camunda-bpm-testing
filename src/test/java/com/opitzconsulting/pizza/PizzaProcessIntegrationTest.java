@@ -1,6 +1,5 @@
 package com.opitzconsulting.pizza;
 
-
 import com.opitzconsulting.pizza.arquillian.IgnoreMavenTestSourceFolder;
 import com.opitzconsulting.pizza.process.SupplierAdapter;
 import lombok.extern.java.Log;
